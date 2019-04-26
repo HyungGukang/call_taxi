@@ -1,0 +1,55 @@
+---
+title: "콜미 콜미"
+author: "강형구,지현주,윤예슬"
+
+date: "2019년 4월 26일"
+
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Slide with Bullets
+
+- 주제 선정 이유와 분석 의의
+- 데이터 분석 현황
+- 향후 계획
+
+## 주제 선정 이유
+
+-장애인 콜택시의 현재 문제점을 파악
+   
+    *법으로 정해저 있는 콜택시 수의 문제
+   
+    *운행 시간의 한계
+  
+    *대기시간의 큰 편차
+   ![이미지1](http://newsimg.hankookilbo.com/2017/12/13/201712131998205869_1.jpg)
+
+## 데이터 분석 의의
+
+
+## Slide with Plot
+
+```{r echo=TRUE}
+library(tidyverse)
+
+call_taxi_df <- read_csv("data/project_data_1.csv",
+                         col_types=cols(
+                           기준일 = col_character(),
+                           차량운행 = col_double(),
+                           희망건 = col_double(),
+                           탑승건 = col_double(),
+                           평균대기시간 = col_double(),
+                           평균요금 = col_double(),
+                           평균승차거리 = col_double()
+                           
+                         ))
+
+summary(call_taxi_df)
+
+```
+
