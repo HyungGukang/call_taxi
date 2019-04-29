@@ -29,7 +29,6 @@ knitr::opts_chunk$set(echo = FALSE)
     *대기시간의 큰 편차
    ![그래프1](http://newsimg.hankookilbo.com/2017/12/13/201712131998205869_1.jpg)
 
-## 데이터 분석 의의
 
 ## 언어 및 도구
 
@@ -37,13 +36,13 @@ knitr::opts_chunk$set(echo = FALSE)
     
     * ggplot2를 이용한 시각화
     
-##대이터 분석 시작
+##데이터 분석 시작
    
    
    *데이터프레임 형성
    
    
-```{r echo=FALSE}
+```{r dataframe,warning=FALSE}
 library(tidyverse)
 
 call_taxi_df <- read_csv("data/project_data_1.csv",
@@ -60,12 +59,19 @@ call_taxi_df <- read_csv("data/project_data_1.csv",
 
 call_taxi_df
 
+```
 
-ncol(call_taxi_df); nrow(call_taxi_df)
+##데이터 기본 요약
+
+```{r summary}
 
 
+ncol(call_taxi_df) 
+
+nrow(call_taxi_df)
 
 summary(call_taxi_df)
+
 ```
 
 ##각 변수들의 상관관계 분석
@@ -73,14 +79,11 @@ summary(call_taxi_df)
    *ggpair를 이용한 상관관계 시각화
    
    
-```{r echo=FALSE}
+```{r ggplot,echo=FALSE}
 library(GGally)
-
 call_taxi_df %>% 
   select(차량운행,희망건,탑승건) %>% 
   cor()
-
-
 call_taxi_df %>% 
   select(차량운행,희망건,탑승건) %>% 
   ggpairs()
@@ -94,7 +97,7 @@ call_taxi_df %>%
 
  
    *희망건과 탑승건의 관계(주중)
-```{r echo=FALSE}
+```{r ggplot1, echo=FALSE}
 
 
 call_taxi_df %>% 
@@ -104,9 +107,11 @@ call_taxi_df %>%
                       y=탑승건))+geom_point()
 ```
 
-
+  
+  
+  
    *희망건관 탑승건의 관계(주말)
-```{r echo=FALSE}
+```{r ggplot2, echo=FALSE}
 call_taxi_df %>% 
   filter(차량운행<400) %>% 
   ggplot(data = ,
