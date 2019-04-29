@@ -12,29 +12,38 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-## Slide with Bullets
+## 목차
 
 - 주제 선정 이유와 분석 의의
-- 데이터 분석 현황
+- 언어 및 도구와 데이터 분석 현황
 - 향후 계획
 
 ## 주제 선정 이유
 
 -장애인 콜택시의 현재 문제점을 파악
    
-    *법으로 정해저 있는 콜택시 수의 문제
+    *법정 콜택시 수의 문제
    
     *운행 시간의 한계
   
     *대기시간의 큰 편차
-   ![이미지1](http://newsimg.hankookilbo.com/2017/12/13/201712131998205869_1.jpg)
+   ![그래프1](http://newsimg.hankookilbo.com/2017/12/13/201712131998205869_1.jpg)
 
 ## 데이터 분석 의의
 
+## 언어 및 도구
 
-## Slide with Plot
-
-```{r echo=TRUE}
+    * RStudio
+    
+    * ggplot2를 이용한 시각화
+    
+##대이터 분석 시작
+   
+   
+   *데이터프레임 형성
+   
+   
+```{r echo=FALSE}
 library(tidyverse)
 
 call_taxi_df <- read_csv("data/project_data_1.csv",
@@ -47,9 +56,60 @@ call_taxi_df <- read_csv("data/project_data_1.csv",
                            평균요금 = col_double(),
                            평균승차거리 = col_double()
                            
-                         ))
+                        ))
+
+call_taxi_df
+
+
+ncol(call_taxi_df); nrow(call_taxi_df)
+
+
 
 summary(call_taxi_df)
+```
+
+##각 변수들의 상관관계 분석
+   
+   *ggpair를 이용한 상관관계 시각화
+   
+   
+```{r echo=FALSE}
+library(GGally)
+
+call_taxi_df %>% 
+  select(차량운행,희망건,탑승건) %>% 
+  cor()
+
+
+call_taxi_df %>% 
+  select(차량운행,희망건,탑승건) %>% 
+  ggpairs()
 
 ```
 
+
+
+
+##ggplot2 를 이용한 시각화
+
+ 
+   *희망건과 탑승건의 관계(주중)
+```{r echo=FALSE}
+
+
+call_taxi_df %>% 
+  filter(차량운행>400) %>% 
+  ggplot(data = ,
+         mapping= aes(x=희망건,
+                      y=탑승건))+geom_point()
+```
+
+
+   *희망건관 탑승건의 관계(주말)
+```{r echo=FALSE}
+call_taxi_df %>% 
+  filter(차량운행<400) %>% 
+  ggplot(data = ,
+         mapping= aes(x=희망건,
+                      y=탑승건))+geom_point()
+```

@@ -1,0 +1,35 @@
+---
+title: "correlation"
+author: "강형구"
+date: "2019년 4월 29일"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##상관관계 함수
+
+
+
+```{r echo=FALSE}
+install.packages("corrplot")
+install.packages("GGally")
+
+
+데이터셋 %>% 
+  select(c1,c2,c3,....) %>% 
+  cor()
+
+
+데이터셋 %>% 
+  select(c1,c2,c3,.....) %>% 
+  ggpairs()
+
+ggpairs 함수는 상관계수와 그래프를 함께보여주는 함수입니다
+
+```
+
+
+
